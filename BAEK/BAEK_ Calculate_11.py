@@ -1,0 +1,10 @@
+A = input()
+B = input()
+one = int(B[2])*int(A)
+two = int(B[1])*int(A)
+three = int(B[0])*int(A)
+total = one + two*10 + three*100
+print(one)
+print(two)
+print(three)
+print(total)
