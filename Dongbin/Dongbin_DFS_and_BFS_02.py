@@ -1,59 +1,52 @@
-# 미로 탈출
-# BFS 알고리즘 활용
+# 음료수 얼려 먹기
+# DFS 깊이 우선 탐색 알고리즘을 활용
 
-from collections import deque
 # N, M = map(int, input().split())
-N, M = 5, 5
+N, M = 4, 5
 
+
+# N x M 의 2차원 리스트를 받음
 # # N개의 값을 입력 받음
 # graph = []
 # for _ in range(N):
 #     graph.append(list(map(int,input())))
 
-# 0은 벽 1은 길
-# 도착 위치 N-1, M-1로 가는 최단 거리를 구한다.
 graph = [
-    [1,1,1,0,0],
-    [1,0,1,0,0],
-    [1,0,1,1,0],
-    [1,0,0,1,1],
-    [1,1,1,1,1]
+    [0,0,1,1,0],
+    [0,0,0,1,1],
+    [1,1,1,1,1],
+    [0,0,0,0,0]
 ]
-# 이동할 방향 정의
-# x의 경우 상하에만 영향을 줌
-# y의 경우 좌우에만 영향을 줌
-# 상 하 좌 우
-dx = [-1,1,0,0]
-dy = [0,0,-1,1]
-def bfs(x, y):
-    # 먼저 들어온 알고리즘 부터 처리를 한다
-    queue = deque()
-    queue.append((x, y))
-    # queue = [] 이 되면 Fasle가 된다
-    # 따라서 빌 때까지 반복
-    while queue:
-        x, y = queue.popleft()
-        # 4가지 방향 탐색
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            # 미로의 공간을 벗어날 경우 무시:
-            if nx < 0 or nx >= N or ny < 0 or ny >= M:
-                continue
-            # 움직인 위치가 벽이기 때문에 무시
-            if graph[nx][ny] == 0:
-                continue
-            # 움직인 위치가 길이기 때문에 이동
-            if graph[nx][ny] == 1:
-                # 현재 위치에서 다음 위치로 이동했기 때문에
-                # 1을 더 해줌으로써 움직인 위치 까지의 이동 거리를 구함
-                graph[nx][ny] = graph[x][y] + 1
-                # 움직인 위치가 존재하기 때문에 값에 넣음
-                queue.append((nx, ny))
 
-    # 어디로 가든 최단거리가 나오기 때문에 상관이 없네
-    # 도착 위치는 언제나 N-1,M-1 임
-    return graph[N-1][M-1]
+def dfs(x, y):
+    # x는 행, y는 열
+    # 따라서
+    # x가 0보다 작거나 N 보다 크거나 같다면 범위를 벗어남
+    # y가 0보다 작거나 M 보다 크거나 같다면 범위를 벗어남
+    if x <= -1 or x >= N or y <= -1 or y >= M: return False
+    if graph[x][y] == 0:
+        # 해당 노드를 방문 처리 헤야함 (0을 1로 바꿔주면 가능)
+        graph[x][y] = 1
+        # 위 방문처리
+        dfs(x-1, y)
+        # 아래 방문처리
+        dfs(x+1, y)
+        # 좌측 방문처리
+        dfs(x, y-1)
+        # 우측 방문처리
+        dfs(x, y +1)
+        # 모두 방문을 했다면 True를 반환
+        return True
+    # 값이 0이 아니라는 것은 이미 방문한 노드이거나 원래부터 1이 었던 노드
+    return False
 
-# 출발 위치는 언제나 0,0 임
-print(bfs(0,0))
+count = 0
+# 행을 반복
+for i in range(N):
+    # 열을 반복
+    for j in range(M):
+        # 값이 0이었던 노드 중에 인접 노드를 모두 방문하면 True를 반환
+        if dfs(i, j) == True:
+            count += 1
+
+print(count)
