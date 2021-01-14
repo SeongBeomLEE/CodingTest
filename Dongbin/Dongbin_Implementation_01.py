@@ -31,4 +31,29 @@ for r in road:
 r_x, r_y = li[x][y]
 print(r_x, r_y)
 
+
+'''
 # 책에 있는 방법
+
+# N = int(input())
+N = 5
+# roads = input().split()
+roads= ["D", "D", "D", "D", "D", "D", "D"]
+x, y = 1, 1
+
+# 상 하 좌 우
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+move_types = ['U', 'D', 'L', 'R']
+
+for road in roads:
+    for i in range(len(move_types)):
+        if road == move_types[i]:
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+    if (0 < nx <= N) and (0< ny <= N): x, y = nx, ny
+
+print(x, y)
+
+'''
