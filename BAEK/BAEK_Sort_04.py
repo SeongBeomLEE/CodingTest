@@ -40,4 +40,3 @@ print(mean(v))
 print(median(v))
 print(frq(v))
 print(scope(v))
-

@@ -70,7 +70,6 @@ def countSort(array):
         for j in range(count[i]):
             print(i, end=' ')
 
-
 array = [7,5,9,0,0,3,1,6,4,7,8]
 
 print(selectionSort(array))

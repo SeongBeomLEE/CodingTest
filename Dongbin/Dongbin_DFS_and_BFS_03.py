@@ -54,10 +54,13 @@ def bfs(x, y):
 
     # 어디로 가든 최단거리가 나오기 때문에 상관이 없네
     # 도착 위치는 언제나 N-1,M-1 임
-    return graph
+    # return graph
+    return graph[N-1][M-1]
 
 # 출발 위치는 언제나 0,0 임
 # 서로 만나면 종료 한다는 것을 알 수 있음
 # 또한 모든 길을 다 탐문했을 때 1이 사라지면 종료 된다는 것을 알 수 있음
-for i in bfs(0,0):
-    print(i)
+print(bfs(0,0))
+
+# for i in bfs(0,0):
+#     print(i)

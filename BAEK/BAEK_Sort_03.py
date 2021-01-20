@@ -1,6 +1,7 @@
 N = 10
 array = [5, 2, 3, 1, 4, 2, 3, 5, 1, 7]
 # 선택 정렬
+# 메모리 초과
 def selectionSort(array):
     for i in range(len(array)):
         min_idx = i # 가장 작은 원소의 인덱스
@@ -15,6 +16,7 @@ def selectionSort(array):
     return array
 
 # 삽입 정렬
+# 메모리 초과
 def insertionSort(array):
     # 왼쪽으로 값을 삽입할 것이기 때문에 두번째 원소 부터 시작
     for i in range(1, len(array)):
@@ -30,6 +32,7 @@ def insertionSort(array):
     return array
 
 # 퀵 정렬
+# 메모리 초과
 def quickSort(array):
     # 반씩 나눠서 정렬을 하는 알고리즘
     # 재귀함수를 활용하기 떼문에 재귀 함수의 종료조건을 명시
@@ -52,6 +55,7 @@ def quickSort(array):
     return quickSort(left_side) + [pivot] + quickSort(right_side)
 
 # 계수 정렬
+# 메모리 초과
 def countSort(array):
     # 0으로 채워진 array의 최대값의 크기를 배열을 구함
     # 이 배열을 활용해 값이 존재하는지 카운트 할 예정
@@ -71,13 +75,19 @@ def countSort(array):
         # 그 값은 2가 나옴
         for j in range(count[i]):
             print(i, end=' ')
-
+'''
+import sys
+array = []
+for _ in range(int(input())):
+    array.append(int(sys.stdin.readline()))
+for i in quickSort(array):
+    print(i)
+'''
 print(selectionSort(array))
 print(insertionSort(array))
 print(quickSort(array))
 countSort(array)
-# for i in 정렬된 배열 :
-#     print(i)
+
 '''
 # 정답 코드
 import sys
