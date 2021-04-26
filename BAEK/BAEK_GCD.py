@@ -20,3 +20,4 @@ def era(N):
         for j in range(i*i, N+1, i):
             ck[j] = True
     return ck, p
+
