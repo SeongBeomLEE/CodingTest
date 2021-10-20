@@ -18,6 +18,7 @@ def solution(N, road, K):
                 if _e not in _vis:
                     if c + _c < answer[_e]:
                         stack.append([_e, c + _c, _vis])
+
     cnt = 0
     for k in answer:
         if k <= K: cnt += 1
