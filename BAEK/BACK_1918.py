@@ -1,32 +1,27 @@
-# 후위 표기식2 - 진행중
+# 후위 표기식
 
-strings = '(A+(B*C))-(D/E)'
-
+strings = input()
+p = ['+', '-', '*', '/', '(', ')']
 stack = []
 S = ''
 for s in strings:
-    print(s, stack)
-    if s not in ['*', '+', '/', '-', '(', ')']:
+    if s not in p:
         S += s
     else:
         if stack:
             if s == ')':
-                while stack[-1] != '(':
+                while stack and stack[-1] != '(':
                     S += stack.pop()
                 stack.pop()
-            else:
-                if s == '(': stack.append(s)
-                else:
-                    if stack[-1] in ['+', '-'] and s in ['+', '-']:
-                        S += stack.pop()
-                        stack.append(s)
-                    elif stack[-1] in ['+', '-'] and s in ['*', '/']:
-                        stack.append(s)
-                    elif stack[-1] in ['*', '/'] and s in ['*', '/']:
-                        S += stack.pop()
-                        stack.append(s)
-                    elif stack[-1] in ['*', '/'] and s in ['+', '-']:
-                        stack.append(s)
+            elif s == '(': stack.append(s)
+            elif s in ['+', '-']:
+                while stack and stack[-1] != '(':
+                    S += stack.pop()
+                stack.append(s)
+            elif s in ['*', '/']:
+                while stack and stack[-1] in ['*', '/']:
+                    S += stack.pop()
+                stack.append(s)
         else: stack.append(s)
 
 print(S + ''.join(list(reversed(stack))))
