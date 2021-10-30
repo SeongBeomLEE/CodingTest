@@ -1,25 +1,19 @@
-# 위장
-from itertools import combinations
-def solution(clothes):
-    c = dict()
-    for clothe in clothes:
-        name, cat = clothe
-        if cat not in c:
-            c[cat] = [name]
+# 베스트앨범
+# 지하철에서 핸드폰으로 코딩함ㅎㅎ
+def solution(genres, plays):
+    dic = {}
+    for idx, (genre, play) in enumerate(zip(genres, plays)):
+        if genre not in dic:
+            dic[genre] = [play,[(play, idx)]]
         else:
-            c[cat] += [name]
-    key_li = list(c.keys())
-    com_key_li = []
-    for i in range(1, len(key_li) + 1):
-        com_key_li += list(combinations(key_li, i))
-    answer = 0
-    for key in com_key_li:
-        cnt = 1
-        for k in key:
-            cnt *= len(c[k])
-        answer += cnt
-
+            dic[genre][0] += play
+            dic[genre][1] += [(play, idx)]
+    val = sorted(list(dic.values()), reverse = True)
+    answer = []
+    for total, ans_li in val:
+        for play, idx in sorted(ans_li, reverse = True, key = lambda x : (x[0], -x[1]))[:2]:
+            answer += [idx]
     return answer
-
-clothes = [["yellowhat", "headgear"], ["bluesunglasses", "eyewear"], ["green_turban", "headgear"]]
-print(solution(clothes))
+genres = ["classic", "pop", "classic", "classic", "pop"]
+plays = [500, 600, 150, 800, 2500]
+print(solution(genres, plays))
