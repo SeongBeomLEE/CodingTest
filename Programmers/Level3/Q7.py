@@ -1,19 +1,28 @@
-# 베스트앨범
-# 지하철에서 핸드폰으로 코딩함ㅎㅎ
-def solution(genres, plays):
-    dic = {}
-    for idx, (genre, play) in enumerate(zip(genres, plays)):
-        if genre not in dic:
-            dic[genre] = [play,[(play, idx)]]
+# 디스크 컨트롤러
+# https://programmers.co.kr/questions/12430
+# 아직 이해를 못함 다시 공부해야함
+import heapq
+def solution(jobs):
+    jobs.sort()
+    answer, now, start, idx = 0, 0, -1, 0
+    nums = len(jobs)
+    heap = []
+    while idx < len(jobs):
+        for s, d in jobs:
+            if start < s <= now:
+                heapq.heappush(heap, [d, s])
+        if heap:
+            d, s = heapq.heappop(heap)
+            start = now
+            now += d
+            answer += (now - s)
+            idx += 1
         else:
-            dic[genre][0] += play
-            dic[genre][1] += [(play, idx)]
-    val = sorted(list(dic.values()), reverse = True)
-    answer = []
-    for total, ans_li in val:
-        for play, idx in sorted(ans_li, reverse = True, key = lambda x : (x[0], -x[1]))[:2]:
-            answer += [idx]
-    return answer
-genres = ["classic", "pop", "classic", "classic", "pop"]
-plays = [500, 600, 150, 800, 2500]
-print(solution(genres, plays))
+            now += 1
+
+    return answer // nums
+
+# [작업이 요청되는 시점, 작업의 소요시간]
+jobs = [[0, 3], [1, 9], [2, 6]]
+jobs = [[0, 3], [0, 2], [1, 9], [2, 6]]
+print(solution(jobs))
