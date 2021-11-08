@@ -8,7 +8,6 @@ def solution(tickets):
             m[ticket[0]] = [ticket[1]]
         else:
             m[ticket[0]] += [ticket[1]]
-    answer = ['ICN']
     q = [[['ICN'], m]]
     while True:
         ans, m = q.pop(0)
