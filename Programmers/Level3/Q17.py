@@ -1,5 +1,6 @@
 # 광고 삽입
 # https://dev-note-97.tistory.com/156
+# memoization을 통한 누적 값 구하기
 def solution(play_time, adv_time, logs):
     h, m, s = map(int, play_time.split(':'))
     play_time = (h * 3600) + (m * 60) + s
