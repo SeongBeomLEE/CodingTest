@@ -3,10 +3,44 @@
 # t - 셔틀 운행 간격
 # m - 한 셔틀에 탈 수 있는 최대 크루 수
 # timetable - 크루가 대기열에 도착하는 시각을 모은 배열
-# 일단은 다 분으로 바꿔서 정렬 후에 하나하나 씩 비교하면서 만들어야 할 듯 함
-# 제일 마지막에 출발하는 버스의 시간을 구하고
-# timetable 안에 본 시간 보다 빠르게 온 친구들 있으면 일단 1개씩 제거 후에
-# 제일 마지막 친구랑 서로 비교하거나 그 m 안에 들어가는 친구들으 서로 비교해줘야 할듯함
+from collections import deque
+
+def get_time(x):
+    h, m = x.split(':')
+    time = (int(h) * 60) + int(m)
+    return time
+
 def solution(n, t, m, timetable):
-    answer = ''
+    timetable = deque(sorted(list(map(lambda x: get_time(x), timetable))))
+    start = get_time('09:00')
+    total_m = 0
+    for _ in range(n):
+        _m = 0
+        while True:
+            if abs(_m) == m:
+                answer = ans - 1
+                break
+            if not timetable:
+                answer = start
+                break
+            if timetable[0] <= start:
+                ans = timetable.popleft()
+                _m -= 1
+            else:
+                answer = start
+                break
+        total_m += abs(_m)
+        start += t
+        if total_m >= (n * m): break
+
+    h = str(answer // 60)
+    m = str(answer % 60)
+    if len(h) == 1: h = '0' + h
+    if len(m) == 1: m = '0' + m
+    answer = f'{h}:{m}'
     return answer
+n = 1
+t = 1
+m = 5
+timetable = ["00:01", "00:01", "00:01", "00:01", "00:01"]
+print(solution(n, t, m, timetable))
