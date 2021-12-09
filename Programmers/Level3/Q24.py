@@ -30,6 +30,7 @@ def solution(n, s, a, b, fares):
         graph[v2].append([v1, cost])
 
     s_dist = dijkstra(n = n, s = s, graph = graph)
+
     for i in range(1, n + 1):
         dist = dijkstra(n = n, s = i, graph = graph)
         answer = min(answer, dist[a] + dist[b] + s_dist[i])
