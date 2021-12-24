@@ -6,7 +6,7 @@
 # input = [[1],[2]]
 # print(solution(input))
 
-# 아쉽네... 이렇게 풀었으면 된건데....
+# 아쉽네... 이렇게 풀었으면 된건데.....
 from collections import deque
 def solution(arr, s):
     if sum(arr) < s: return 0
