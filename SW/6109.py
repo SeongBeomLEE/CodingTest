@@ -12,7 +12,6 @@ def change_maps_up(maps, N):
     maps = copy.deepcopy(maps)
     for i in range(N):
         for j in range(N):
-            # up 기준
             _i = i
             _j = j
             if maps[i][j] == 0:
@@ -27,7 +26,6 @@ def change_maps_down(maps, N):
     maps = copy.deepcopy(maps)
     for i in range(N - 1, -1, -1):
         for j in range(N):
-            # up 기준
             _i = i
             _j = j
             if maps[i][j] == 0:
@@ -42,7 +40,6 @@ def change_maps_left(maps, N):
     maps = copy.deepcopy(maps)
     for j in range(N):
         for i in range(N):
-            # up 기준
             _i = i
             _j = j
             if maps[i][j] == 0:
@@ -57,7 +54,6 @@ def change_maps_right(maps, N):
     maps = copy.deepcopy(maps)
     for j in range(N - 1, -1, -1):
         for i in range(N):
-            # up 기준
             _i = i
             _j = j
             if maps[i][j] == 0:
