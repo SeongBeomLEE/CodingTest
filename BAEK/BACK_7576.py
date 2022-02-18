@@ -29,13 +29,12 @@ tmp = False
 for ii in arr:
     for i in ii:
         if i == 0:
-            answer = -1
+            answer = 0
             tmp = True
             break
         answer = max(answer, i)
     if tmp: break
 
-if tmp: print(answer)
-else: print(answer - 1)
+print(answer - 1)
 
 
