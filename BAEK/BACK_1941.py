@@ -2,7 +2,6 @@
 def get_answer(ans, depth = 0, S = 0, Y = 0):
     if Y > 3: return False
     if depth == 6:
-        print(ans)
         answer.add(tuple(sorted(ans)))
     if depth < 6:
         # 현재 까지 탐색한 모든 노드에서 출발하는 것이 이 문제의 핵심
