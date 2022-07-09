@@ -1,5 +1,6 @@
 # https://www.acmicpc.net/problem/1158
 # 요세푸스 문제
+# 연결리스트 풀이
 
 import sys
 input = sys.stdin.readline
@@ -20,7 +21,7 @@ for n in range(1, N + 1):
 
 if N < linked_list[N][1]:
     answer = [1]
-    
+
 else:
     cnt = 1
     now = 1

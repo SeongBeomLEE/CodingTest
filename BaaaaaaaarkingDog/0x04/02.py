@@ -1,5 +1,6 @@
 # https://www.acmicpc.net/problem/5397
 # 키로거
+# 스택을 사용한 풀이 (연결리스트로 못 풀겠어요.....)
 
 import sys
 input = sys.stdin.readline
