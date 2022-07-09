@@ -18,3 +18,6 @@ Programmers 알고리즘 문제가 정리된 폴더
 
 ## SW
 SW Expert Academy 알고리즘 문제가 정리된 폴더
+
+## BaaaaaaaarkingDog
+BaaaaaaaarkingDog의 알고리즘 유형 강의를 기반으로 풀이한 무제가 정리된 폴더
